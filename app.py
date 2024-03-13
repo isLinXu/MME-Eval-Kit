@@ -17,7 +17,7 @@ def calculate_cognition(row):
 
 def create_interface():
     with gr.Blocks() as demo:
-        data_frame, output_path = plot_evaluation_chart("./data/mllm_mme_0313_data.csv", "Existence")
+        data_frame, output_path = plot_evaluation_chart("./data/mllm_acc_eval-csv_private_0128.csv", "Existence")
         data_frame['Perception'] = data_frame.apply(calculate_perception, axis=1)
         data_frame['Cognition'] = data_frame.apply(calculate_cognition, axis=1)
         with gr.TabItem('🔍 About', elem_id='about', id=1):
