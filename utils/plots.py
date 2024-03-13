@@ -16,6 +16,7 @@ def plot_evaluation_chart(csv_path, sort_column, output_path='evaluation_chart.p
     categories = list(data_frame.columns[1:])
     values = data_frame.values[:, 1:]
     model_labels = data_frame.values[:, 0]
+    print('model_labels:', model_labels)
 
     # 计算角度并闭合多边形
     angles = np.linspace(0, 2 * np.pi, len(categories), endpoint=False).tolist()
@@ -30,9 +31,12 @@ def plot_evaluation_chart(csv_path, sort_column, output_path='evaluation_chart.p
 
     # 隐藏最外圈的圆
     ax.spines['polar'].set_visible(False)
-
+    print('values:', len(values))
+    if len(values) > 6:
+        values = values[:6]
     # 绘制每一行数据的多边形
     for i, row in enumerate(values):
+        print(i, row)
         cr = colors_common_private[i]
         data = np.concatenate((row, [row[0]]))  # 闭合多边形
         label_name = model_labels[i]
